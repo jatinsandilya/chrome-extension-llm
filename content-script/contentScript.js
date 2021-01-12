@@ -17,6 +17,15 @@ var removeAttribute = function (element, attributeName, onChange) {
         return;
     }
 }
+var debounce = function (func, delay) {
+    let inDebounce
+    return function () {
+        const context = this
+        const args = arguments
+        clearTimeout(inDebounce)
+        inDebounce = setTimeout(function () { func.apply(context, args) }, delay)
+    }
+}
 
 var oldNodes = [];
 var allNodes = [];
@@ -109,7 +118,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     }
     if (message.name === "capture-on") {
         console.log("DEBUG: contentScript", "Executing this.");
-        document.body.onmouseover = function (event) {
+        document.body.onmouseover = debounce(function (event) {
             if (event.target === document.body ||
                 (prevCapture && prevCapture === event.target)) {
                 return;
@@ -124,16 +133,19 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
                 prevCapture = event.target;
                 prevCapture.className += " flowdash-capture-highlight";
             }
-        }
+        }, 100)
     }
     if (message.name === "capture-off") {
         document.body.onmouseover = null;
         if (prevCapture) {
             if (typeof prevCapture.className === "string") {
                 prevCapture.className = prevCapture.className.replace(/\bflowdash-capture-highlight\b/, '');
-                prevCapture = undefined;
             }
         }
+    }
+    if (message.name === "capture-step") {
+        let absoluteXPath = generateXpath(prevCapture);
+        sendResponse(absoluteXPath);
     }
 });
 
