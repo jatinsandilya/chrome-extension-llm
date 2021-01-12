@@ -20,6 +20,7 @@ var removeAttribute = function (element, attributeName, onChange) {
 
 var oldNodes = [];
 var allNodes = [];
+var prevCapture;
 var highlightElements = function (xpathOrCss, xpath, onChange) {
     var elements;
     try {
@@ -107,47 +108,33 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         }
     }
     if (message.name === "capture-on") {
-        var prev;
         console.log("DEBUG: contentScript", "Executing this.");
         document.body.onmouseover = function (event) {
             if (event.target === document.body ||
-                (prev && prev === event.target)) {
+                (prevCapture && prevCapture === event.target)) {
                 return;
             }
-            if (prev) {
-                if (typeof prev.className === "string") {
-                    prev.className = prev.className.replace(/\bflowdash-capture-highlight\b/, '');
-                    prev = undefined;
+            if (prevCapture) {
+                if (typeof prevCapture.className === "string") {
+                    prevCapture.className = prevCapture.className.replace(/\bflowdash-capture-highlight\b/, '');
+                    prevCapture = undefined;
                 }
             }
             if (event.target) {
-                prev = event.target;
-                console.log("HERE", event);
-                prev.className += " flowdash-capture-highlight";
+                prevCapture = event.target;
+                prevCapture.className += " flowdash-capture-highlight";
             }
         }
     }
-    // (function () {
-    //     var prev;
-
-    //     document.body.onmouseover = function (event) {
-    //         if (event.target === document.body ||
-    //             (prev && prev === event.target)) {
-    //             return;
-    //         }
-    //         if (prev) {
-    //             if (typeof prev.className === "string") {
-    //                 prev.className = prev.className.replace(/\bflowdash-capture-highlight\b/, '');
-    //                 prev = undefined;
-    //             }
-    //         }
-    //         if (event.target) {
-    //             prev = event.target;
-    //             console.log("HERE", event);
-    //             prev.className += " flowdash-capture-highlight";
-    //         }
-    //     }
-    // })();
+    if (message.name === "capture-off") {
+        document.body.onmouseover = null;
+        if (prevCapture) {
+            if (typeof prevCapture.className === "string") {
+                prevCapture.className = prevCapture.className.replace(/\bflowdash-capture-highlight\b/, '');
+                prevCapture = undefined;
+            }
+        }
+    }
 });
 
 
