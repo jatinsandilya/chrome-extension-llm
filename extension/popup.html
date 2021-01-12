@@ -1,14 +1,17 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Development tool to edit, inspect and generate XPath expressions and CSS selectors.</title>
-    <link rel="stylesheet" type="text/css" href="popup.css" />
+	<title>Development tool to edit, inspect and generate XPath expressions and CSS selectors.</title>
+	<link rel="stylesheet" type="text/css" href="popup.css" />
+	<script src="popup.js"></script>
 </head>
+
 <body>
-	<h3>ChroPath</h3>
+	<h3>Flowdash Flow builder</h3>
 	<h4>Please follow the steps below :</h4>
 	<ul>
-		<li>Open devtools panel. 
+		<li>Open devtools panel.
 			<ul class="subMenu">
 				<li>Right-click anywhere on the webpage.</li>
 				<li>Click <strong>Inspect</strong>.</li>
@@ -16,7 +19,16 @@
 		</li>
 		<li>In the right side of Elements tab, click on <strong>ChroPath</strong> tab.</li>
 		<li>Here you can get and write the <strong>XPath/CSS</strong> and evaluate.</li>
+		<div>
+			<form>
+				<p>Capturing</p>
+				<label class="switch">
+					<input type="checkbox" name="switch" id="mode">
+					<span class="slider round"></span>
+					<label for="switch">Start</label><br>
+				</label>
+			</form>
+		</div>
 	</ul>
 </body>
-
 </html>
