@@ -18,9 +18,19 @@ function popup(event) {
         }
     });
 }
+function replay() {
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+        var activeTab = tabs[0];
+        chrome.runtime.sendMessage({
+            name: "replay-captures",
+            tabId: activeTab.id,
+        });
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("mode").addEventListener("click", popup);
+    document.getElementById("replay").addEventListener("click", replay);
 });
 
 window.onload = function () {

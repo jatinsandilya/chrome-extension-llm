@@ -1,5 +1,6 @@
 var devtoolsRegEx = /^chrome-devtools:\/\//;
 var connections = {};
+var steps = [];
 
 var messageToContentScript = function (message) {
     console.log("DEBUG: backgroundScript", message);
@@ -50,6 +51,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
             }
         }
     } else {
+        if (message.name === "replay-captures") {
+            message.steps = steps;
+            messageToContentScript(message);
+        }
     }
     return true;
 });
@@ -72,6 +77,8 @@ chrome.contextMenus.onClicked.addListener(function (event) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { name: "capture-step" }, function (response) {
                 console.log("capture-step response", response);
+                steps.push(response);
+                console.log("Steps as of now:", steps);
                 // Call API HERE.
             });
         });

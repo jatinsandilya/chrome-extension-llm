@@ -30,6 +30,8 @@ var debounce = function (func, delay) {
 var oldNodes = [];
 var allNodes = [];
 var prevCapture;
+var currentStep = 0;
+
 var highlightElements = function (xpathOrCss, xpath, onChange) {
     var elements;
     try {
@@ -146,6 +148,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.name === "capture-step") {
         let absoluteXPath = generateXpath(prevCapture);
         sendResponse(absoluteXPath);
+    }
+    if (message.name === "replay-captures") {
+        highlightElements("XPath", message.steps[currentStep], false);
+        currentStep++;
     }
 });
 
