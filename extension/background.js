@@ -1,6 +1,9 @@
 var devtoolsRegEx = /^chrome-devtools:\/\//;
 var connections = {};
-var steps = [];
+var steps = {};
+
+var CORE_API_BASE_URL = 'https://api.flowdash.ai/'
+var WALKTHROUGH_URL_PREFIX = 'walkthrough/'
 
 var messageToContentScript = function (message) {
     console.log("DEBUG: backgroundScript", message);
@@ -55,6 +58,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
             message.steps = steps;
             messageToContentScript(message);
         }
+        else if (message.name === 'publish') {
+            publish();
+        }
     }
     return true;
 });
@@ -77,10 +83,47 @@ chrome.contextMenus.onClicked.addListener(function (event) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { name: "capture-step" }, function (response) {
                 console.log("capture-step response", response);
-                steps.push(response);
+                let step = { screenId: tabs[0].url, view: { "content": { "skipAction": "Skip", "actionText": "Next", "primaryText": "Text describing this view", "secondaryText": "Elaborate text" } }, id: response };
+                let temp = steps[tabs[0].url] || [];
+                steps[tabs[0].url] = temp.concat(step);
                 console.log("Steps as of now:", steps);
-                // Call API HERE.
             });
         });
     }
 })
+var publish = function () {
+    // TODO - Call API HERE.
+    let ownerId = 'testingGuid';
+    let apiKey = 'testingApiKey';
+    // let formData = new FormData();
+    // formData.append('data', JSON.stringify({
+    //     value: steps
+    // }));
+
+    var requestOptions = {
+        mode: "cors",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            api_key: apiKey,
+        },
+    };
+    let fetchURL = new URL(CORE_API_BASE_URL + WALKTHROUGH_URL_PREFIX + `${ownerId}`);
+    var data = [];
+    // FIXME - Some issue with saving it as  steps.
+    for (let [key, value] of Object.entries(steps)) {
+        data = data.concat([{ screenId: key, steps: value }]);
+    }
+    console.log("Steps as of now:", data);
+    console.log({ data: JSON.stringify(data) })
+    fetchURL.search = new URLSearchParams({ data: JSON.stringify(data) }).toString();
+
+    fetch(fetchURL, requestOptions)
+        .then((response) => response)
+        .then((result) => {
+            console.log("Saved successfully.", result);
+        })
+        .catch((error) => {
+            console.log("error", error);
+        });
+}

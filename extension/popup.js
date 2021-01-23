@@ -27,10 +27,19 @@ function replay() {
         });
     });
 }
-
+function publish() {
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+        var activeTab = tabs[0];
+        chrome.runtime.sendMessage({
+            name: "publish",
+            tabId: activeTab.id,
+        });
+    });
+}
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("mode").addEventListener("click", popup);
     document.getElementById("replay").addEventListener("click", replay);
+    document.getElementById("publish").addEventListener("click", publish);
 });
 
 window.onload = function () {
