@@ -7,31 +7,24 @@
 	<script src="popup.js"></script>
 </head>
 
-<body>
-	<h3>Flowdash Flow builder</h3>
-	<h4>Please follow the steps below :</h4>
-	<ul>
-		<li>Open devtools panel.
-			<ul class="subMenu">
-				<li>Right-click anywhere on the webpage.</li>
-				<li>Click <strong>Inspect</strong>.</li>
-			</ul>
-		</li>
-		<li>In the right side of Elements tab, click on <strong>ChroPath</strong> tab.</li>
-		<li>Here you can get and write the <strong>XPath/CSS</strong> and evaluate.</li>
-		<div>
-			<form>
-				<p>Capturing</p>
-				<label class="switch">
-					<input type="checkbox" name="switch" id="mode">
-					<span class="slider round"></span>
-					<label for="switch">Start</label><br>
-				</label>
-				<button type="button" id='replay'>Replay</button>
-				<button type="button" id='publish'>Publish</button>
-				<button type="button" id='clear'>Clear</button>
-			</form>
-		</div>
+<body> <img src="../images/banner.png" width="180px">
+	<div>
+		<form>
+			<div id="controls">
+				<div id="capture">
+					<p>Capturing</p>
+					<label class="switch">
+						<input type="checkbox" name="switch" id="mode">
+						<span class="slider round"></span>
+						<label for="switch">Start</label><br>
+					</label>
+				</div>
+				<span type="button" id='replay'>Preview Steps</span>
+				<span type="button" id='publish'>Save</span>
+				<span type="button" id='clear'>Clear</span>
+			</div>
+		</form>
+	</div>
 	</ul>
 </body>
 

@@ -3,9 +3,14 @@ h3, ul {
 }
 
 body{
-	background-color: rgba(220, 220, 220, 0.36);
-    font-size: small;
-    font-family: ver;
+    background-color: white;
+    font-size: 16px;
+    font-family: sans-serif;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 h4 {
 	margin: 5px;
@@ -23,6 +28,7 @@ ul {
 	display: inline-block;
 	width: 60px;
 	height: 34px;
+	margin: 15px;
   }
   
   .switch input { 
@@ -76,4 +82,61 @@ ul {
   
   .slider.round:before {
 	border-radius: 50%;
+  }
+
+  #replay {
+    width: 120px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 5px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #publish {
+    width: 120px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 5px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #clear {
+    width: 120px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 20px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #controls {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+  }
+  #capture {
+	display: flex;
+    justify-content: center;
+    align-items: center;
   }
