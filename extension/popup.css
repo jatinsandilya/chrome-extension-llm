@@ -6,7 +6,7 @@ body{
     background-color: white;
     font-size: 16px;
     font-family: sans-serif;
-    width: 250px;
+    width: 210px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +28,7 @@ ul {
 	display: inline-block;
 	width: 60px;
 	height: 34px;
-	margin: 15px;
+	margin: 15px 10px;
   }
   
   .switch input { 
@@ -85,7 +85,7 @@ ul {
   }
 
   #replay {
-    width: 120px;
+    width: 140px;
     height: 25px;
     background: #2196F3;
     border-radius: 4px;
@@ -100,7 +100,7 @@ ul {
   }
 
   #publish {
-    width: 120px;
+    width: 140px;
     height: 25px;
     background: #2196F3;
     border-radius: 4px;
@@ -115,7 +115,7 @@ ul {
   }
 
   #clear {
-    width: 120px;
+    width: 140px;
     height: 25px;
     background: #2196F3;
     border-radius: 4px;
