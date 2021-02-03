@@ -3,9 +3,14 @@ h3, ul {
 }
 
 body{
-	background-color: rgba(220, 220, 220, 0.36);
-    font-size: small;
-    font-family: ver;
+    background-color: white;
+    font-size: 16px;
+    font-family: sans-serif;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 h4 {
 	margin: 5px;
@@ -18,3 +23,135 @@ ul {
 .subMenu {
 	list-style-type: circle;
 }
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	margin: 15px 10px;
+  }
+  
+  .switch input { 
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+
+  #replay {
+    width: 140px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 5px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #publish {
+    width: 140px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 5px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #signin {
+	width: 140px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 13px;
+    text-align: center;
+    font-weight: 800;
+	margin-bottom: 20px;
+	margin-top: 20px;
+    padding: 4px;
+    cursor: pointer;
+  }
+  #clear {
+    width: 140px;
+    height: 25px;
+    background: #2196F3;
+    border-radius: 4px;
+    color: white;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+	font-weight: 800;
+	margin-bottom: 20px;
+	padding: 4px;
+	cursor: pointer;
+  }
+
+  #controls {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+  }
+  #capture {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+  }
