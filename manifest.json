@@ -3,6 +3,7 @@
     "name": "Flowdash Builder",
     "description": "Create walkthroughs of your app in minutes.",
     "version": "0.0.5",
+    // "key": "mfdbkbiahioennhndapaelfpefpnbime", // TODO - Uncomment this in local.
     "browser_action": {
         "default_icon": "images/icon.png",
         "default_popup": "extension/popup.html"
@@ -16,7 +17,10 @@
     "permissions": [
         "activeTab",
         "contextMenus",
-        "storage"
+        "storage",
+        "https://accounts.google.com/o/oauth2/token",
+        "identity",
+        "identity.email"
     ],
     "content_scripts": [
         {
@@ -31,6 +35,13 @@
             ]
         }
     ],
+    "oauth2": {
+        "client_id": "364913923871-bdc534c9ikihn1un16kf5kh5e6us7gvn.apps.googleusercontent.com",
+        "scopes": [
+            "profile",
+            "https://www.googleapis.com/auth/userinfo.email"
+        ]
+    },
     "icons": {
         "16": "images/icon.png",
         "32": "images/icon.png",

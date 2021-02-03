@@ -4,6 +4,7 @@
 <head>
 	<title>Development tool to edit, inspect and generate XPath expressions and CSS selectors.</title>
 	<link rel="stylesheet" type="text/css" href="popup.css" />
+	<script src="/oauth2/oauth2.js"></script>
 	<script src="popup.js"></script>
 </head>
 
@@ -16,11 +17,12 @@
 					<label class="switch">
 						<input type="checkbox" name="switch" id="mode">
 						<span class="slider round"></span>
-						<label for="switch">Start</label><br>
+						<!-- <label for="switch">Start</label><br> -->
 					</label>
 				</div>
 				<span type="button" id='replay'>Preview Steps</span>
 				<span type="button" id='publish'>Save</span>
+				<span type="button" id='signin'>Sign in with Google</span>
 				<span type="button" id='clear'>Clear</span>
 			</div>
 		</form>
