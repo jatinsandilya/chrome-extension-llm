@@ -1,24 +1,20 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Flowdash Builder",
     "description": "Create walkthroughs of your app in minutes.",
     "version": "0.0.5",
-    // "key": "mfdbkbiahioennhndapaelfpefpnbime", // TODO - Uncomment this in local.
-    "browser_action": {
+    "key": "mfdbkbiahioennhndapaelfpefpnbime",
+    "action": {
         "default_icon": "images/icon.png",
         "default_popup": "extension/popup.html"
     },
     "background": {
-        "scripts": [
-            "extension/background.js"
-        ],
-        "persistent": false
+        "service_worker": "extension/background.js"
     },
     "permissions": [
         "activeTab",
         "contextMenus",
         "storage",
-        "https://accounts.google.com/o/oauth2/token",
         "identity",
         "identity.email"
     ],
